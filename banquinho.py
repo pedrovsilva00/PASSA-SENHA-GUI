@@ -107,7 +107,7 @@ class Banquinho():
 
     def encry(d,p):
         key = Banquinho.generate_key(p)
-        iv = b'0123456789abcdef'  # IV fixo (16 bytes para AES)
+        iv = b'\xdf\x9e>\r\xfc\x82y\x14&\xd4pc0 \xa6\x8c'  # IV fixo (16 bytes para AES)
         cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=default_backend())
         encryptor = cipher.encryptor()
         while len(d) % 16 != 0:  # Prepara os dados (padding se necessário)
@@ -117,7 +117,7 @@ class Banquinho():
 
     def decry(encrypted_data,p):
         key = Banquinho.generate_key(p)
-        iv = b'0123456789abcdef'  # IV fixo
+        iv = b'\xdf\x9e>\r\xfc\x82y\x14&\xd4pc0 \xa6\x8c'  # IV fixo
         cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=default_backend())
         decryptor = cipher.decryptor()
         decrypted = decryptor.update(base64.b64decode(encrypted_data)) + decryptor.finalize()
